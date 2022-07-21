@@ -1,13 +1,15 @@
 import React from 'react'
 import List from './List'
 import TodoForm from './TodoForm'
+import Item from './Item'
 import './Todo.css'
 
 function Todo() {
 
   const [items, setItems] = React.useState([]);
 
-  function onAddItem(item) {
+  function onAddItem(text) {
+    let item = new Item(text);
     setItems([...items, item])
   }
 
