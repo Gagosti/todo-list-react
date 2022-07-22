@@ -8,7 +8,7 @@ import './Todo.css'
 const SAVED_ITEMS = "savedItems"
 
 function Todo() {
-
+  const [showModal, setShowModal] = React.useState(false)
   const [items, setItems] = React.useState([]);
 
   React.useEffect(() => {
@@ -25,6 +25,7 @@ function Todo() {
   function onAddItem(text) {
     let item = new Item(text);
     setItems([...items, item])
+    onHideModal();
   }
 
   function onItemDeleted(item) {
@@ -43,12 +44,16 @@ function Todo() {
     setItems(upDatedItems);
   }
 
+  function onHideModal(e) {
+    setShowModal(false)
+  }
+
   return (
   <div className='container'>
-    <header className='header'><h1>Todo</h1><button className='addButton'>+</button></header>
+    <header className='header'><h1>Todo</h1><button onClick={() => { setShowModal(true) }} className='addButton'>+</button></header>
     {/* <TodoForm onAddItem={onAddItem}></TodoForm> */}
     <List onDone={onDone} onItemDeleted={onItemDeleted} items={items}></List>
-    <Modal><TodoForm onAddItem={onAddItem}></TodoForm></Modal>
+    <Modal show={showModal} onHideModal={onHideModal}><TodoForm onAddItem={onAddItem}></TodoForm></Modal>
   </div>)
 }
 
