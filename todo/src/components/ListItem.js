@@ -14,10 +14,10 @@ function ListItem(props) {
       <li>
         <Card className={props.item.done ? "done item" : "item"}>
           {props.item.text}
-          <di>
+          <div>
             <button onClick={()=>{props.onDone(props.item)}}><DoneImg done={props.item.done}></DoneImg></button>
             <button onClick={()=>{props.onItemDeleted(props.item)}}><img alt="delete" className="trash" src="./assets/bin.png"></img></button>
-          </di>
+          </div>
         </Card>
       </li>)
 }
